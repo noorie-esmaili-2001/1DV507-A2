@@ -46,8 +46,20 @@ public class CountrySort {
 			"United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands",
 			"Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis and Futuna",
 			"Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe" };
+	
+	public static int counting(String a)
+	{
+		int count = 0;
+		a = a.toLowerCase();
+        for(int i = 0; i < a.length(); i++) {    
+            if(a.charAt(i) != 'a')    
+                count++;
+        }
+        return count;
+	}
 
 	public static void main(String[] args) {
+		
 		// Task 1: Print Top 10 list of countries with the longest names
 		Comparator<String> longestName = (s1, s2) -> Integer.compare(s2.length(), s1.length()); // Must be updated
 		Arrays.sort(COUNTRIES, longestName);
@@ -62,14 +74,12 @@ public class CountrySort {
 		for (int i = 0; i < 10; i++)
 			System.out.println("\t" + COUNTRIES[i]);
 
-		// Task 3: Print Top 10 list of country names containing most As (either A or
-		// a).
-		Comparator<String> countAs = (s1, s2) -> ; // Must be updated
-		Arrays.sort(COUNTRIES, countAs);
+		// Task 3: Print Top 10 list of country names containing most As (either A or a).
+		Comparator<String> countAs = (s1,s2) -> counting(s2)-counting(s1);
+		Arrays.sort(COUNTRIES,countAs);
 		System.out.println("\nCountry names containing most As (either A or a)");
 		for (int i = 0; i < 10; i++)
 			System.out.println("\t" + COUNTRIES[i]);
-
 	}
 
 }
