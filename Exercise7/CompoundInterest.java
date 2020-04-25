@@ -40,7 +40,7 @@ public class CompoundInterest extends Application {
 		btCalculate.setOnAction(e -> calculateFinalAmount());
 
 		Scene scene = new Scene(gridPane, 400, 250);
-		primaryStage.setTitle("LoanCalculator");
+		primaryStage.setTitle("Compound Interest");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
