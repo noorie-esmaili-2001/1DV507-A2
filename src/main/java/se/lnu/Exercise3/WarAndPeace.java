@@ -1,37 +1,40 @@
-package ne222hz_assign2.Exercise3;
+package se.lnu.Exercise3;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class WarAndPeace {
 
-	public static void main(String[] args) {
-		long uniqueWordCount;
-		String text = readText("C:\\Users\\noori\\OneDrive\\Skrivbord\\Java\\WarAndPeace.txt"); // My own method for
-		String[] words = text.split(" ");
-		System.out.println("Initial word count: " + words.length);
+    public static void main(String[] args) {
+        String text = readText();
 
-		Stream<String> stream = Arrays.stream(words);
+        if (text != null) {
+            String[] words = text.split("\\s+");
+            System.out.println("Initial word count: " + words.length);
 
-		uniqueWordCount = stream.map(String::toLowerCase).collect(Collectors.groupingBy(w -> w, Collectors.counting()))
-				.entrySet().stream().filter(e -> e.getValue() == 1).count();
+            long uniqueWordCount = Arrays.stream(words)
+                    .map(String::toLowerCase)
+                    .collect(Collectors.groupingBy(w -> w, Collectors.counting()))
+                    .entrySet()
+                    .stream()
+                    .filter(e -> e.getValue() == 1)
+                    .count();
 
-		System.out.println("uniqueWordCount = " + uniqueWordCount);
+            System.out.println("Unique word count: " + uniqueWordCount);
+        }
+    }
 
-	}
-
-	private static String readText(String filePath) {
-		String content = null;
-		try {
-			content = Files.readAllLines(Paths.get(filePath)).toString();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return content;
-	}
-
+    private static String readText() {
+        try {
+            Path filePath = Paths.get("war&peace", "war-and-peace.txt");
+            return Files.readString(filePath);
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+            return null;
+        }
+    }
 }
