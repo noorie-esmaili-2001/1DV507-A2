@@ -1,6 +1,7 @@
-package ne222hz_assign2.Exercise4;
+package se.lnu.Exercise4;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class Node {
 	int data;
@@ -13,17 +14,17 @@ class Node {
 }
 
 /**
- * Linked queue 
+ * Linked queue
  *
  * @author Noorie Esmaili
- * 
+ *
  */
 public class LinkedQueue implements IntQueue {
 
 	/**
 	 * initializing head and tail
 	 */
-	Node head, tail;
+	private Node head, tail;
 
 	/**
 	 * This is the class for empty queue
@@ -37,11 +38,8 @@ public class LinkedQueue implements IntQueue {
 	 * returns false
 	 */
 	public boolean isEmpty() {
-		if (this.head == null) {
-			return true;
-		}
-		return false;
-	}
+        return this.head == null;
+    }
 
 	/**
 	 * This method would return the size of queue
@@ -92,13 +90,13 @@ public class LinkedQueue implements IntQueue {
 	 */
 	public String toString() {
 		Node temp = head;
-		String st = "[ ";
+		StringBuilder st = new StringBuilder("[ ");
 		while (temp != null) {
-			st = st + temp.data + " ";
+			st.append(temp.data).append(" ");
 			temp = temp.next;
 		}
-		st = st + "]";
-		return st;
+		st.append("]");
+		return st.toString();
 	}
 
 	/**
@@ -106,6 +104,9 @@ public class LinkedQueue implements IntQueue {
 	 */
 	@Override
 	public int first() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("The queue is empty");
+		}
 		return this.head.data;
 	}
 
@@ -114,6 +115,9 @@ public class LinkedQueue implements IntQueue {
 	 */
 	@Override
 	public int last() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("The queue is empty");
+		}
 		return this.tail.data;
 	}
 
@@ -126,13 +130,15 @@ public class LinkedQueue implements IntQueue {
 	}
 
 	/**
-	 * @author Noorie Esmaili
-	 *
+	 * Iterator for the LinkedQueue
 	 */
 	class ListIterator implements Iterator<Integer> {
 		private Node node = head;
 
 		public Integer next() {
+			if (!hasNext()) {
+				throw new NoSuchElementException("No more elements");
+			}
 			int val = node.data;
 			node = node.next;
 			return val;
@@ -143,7 +149,7 @@ public class LinkedQueue implements IntQueue {
 		}
 
 		public void remove() {
-			throw new RuntimeException("remove() is not implemented");
+			throw new UnsupportedOperationException("remove() is not implemented");
 		}
 	}
 
