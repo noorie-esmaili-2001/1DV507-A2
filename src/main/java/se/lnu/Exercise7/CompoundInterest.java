@@ -1,4 +1,4 @@
-package ne222hz_assign2.Exercise7;
+package se.lnu.Exercise7;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -12,11 +12,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CompoundInterest extends Application {
-	private TextField startAmount = new TextField();
-	private TextField interest = new TextField();
-	private TextField years = new TextField();
-	private Button btCalculate = new Button("Calculate");
-	private Text text = new Text();
+	private final TextField startAmount = new TextField();
+	private final TextField interest = new TextField();
+	private final TextField years = new TextField();
+	private final Button btCalculate = new Button("Calculate");
+	private final Text text = new Text();
 
 	public void start(Stage primaryStage) {
 		GridPane gridPane = new GridPane();
@@ -50,8 +50,8 @@ public class CompoundInterest extends Application {
 		int year = Integer.parseInt(years.getText());
 		double Interest = Double.parseDouble(interest.getText());
 
-		Calculate compundInterest = new Calculate(amount, Interest, year);
-		text.setText(compundInterest.toString());
+		Calculate compoundInterest = new Calculate(amount, Interest, year);
+		text.setText(compoundInterest.toString());
 	}
 
 	public static void main(String[] args) {

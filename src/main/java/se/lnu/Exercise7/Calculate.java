@@ -1,17 +1,14 @@
-package ne222hz_assign2.Exercise7;
+package se.lnu.Exercise7;
 
 public class Calculate {
 	private double startAmount;
 	private double interest;
 	private int years;
 
-	public Calculate() {
-	}
-
 	public Calculate(double startAmount, double interest, int years) {
-		this.startAmount = startAmount;
-		this.interest = interest;
-		this.years = years;
+		setStartAmount(startAmount);
+		setInterest(interest);
+		setYears(years);
 	}
 
 	public double getStartAmount() {
@@ -26,7 +23,7 @@ public class Calculate {
 		return interest;
 	}
 
-	public void setInterest(int interest) {
+	public void setInterest(double interest) {
 		this.interest = interest;
 	}
 
@@ -39,10 +36,10 @@ public class Calculate {
 	}
 	
 	public int total() {
-		double newInterest = this.interest/100;
+		double newInterest = getInterest()/100;
 		newInterest++;
-		double finalAmount = Math.pow(newInterest, this.years);
-		finalAmount *= this.startAmount;
+		double finalAmount = Math.pow(newInterest, getYears());
+		finalAmount *= getStartAmount();
 		finalAmount = Math.round(finalAmount);
 		return (int)finalAmount;
 	}
