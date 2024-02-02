@@ -1,4 +1,4 @@
-package ne222hz_assign2.Exercise8;
+package se.lnu.Exercise8;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -23,7 +23,7 @@ public class Yahtzee extends Application {
 	private CheckBox[] checkBoxes;
 	private int[] arrTable;
 
-	public int[] checkDices() {
+	public void checkDices() {
 		arrTable = new int[6];
 		for (int i = 0; i < 5; i++) {
 			if (imageViews[i].getImage() == images[0]) {
@@ -40,59 +40,55 @@ public class Yahtzee extends Application {
 				arrTable[5]++;
 			}
 		}
-		return arrTable;
-	}
+    }
 
 	public boolean isYahtzee() {
 		checkDices();
-		for (int i = 0; i < arrTable.length; i++) {
-			if (arrTable[i] == 5) {
-				return true;
-			}
-		}
+        for (int j : arrTable) {
+            if (j == 5) {
+                return true;
+            }
+        }
 		return false;
 	}
 
 	public boolean isFourOfAKind() {
-		for (int i = 0; i < arrTable.length; i++) {
-			if (arrTable[i] == 4)
-				return true;
-		}
+        for (int j : arrTable) {
+            if (j == 4)
+                return true;
+        }
 		return false;
 	}
 
 	public boolean isFullHouse() {
 		boolean three = false;
 		boolean two = false;
-		for (int i = 0; i < arrTable.length; i++) {
-			if (arrTable[i] == 3) {
-				three = true;
-			}
-			if (arrTable[i] == 2) {
-				two = true;
-			}
-		}
-		if (three && two) {
-			return true;
-		}
-		return false;
-	}
+        for (int j : arrTable) {
+            if (j == 3) {
+                three = true;
+            }
+            if (j == 2) {
+                two = true;
+            }
+        }
+        return three && two;
+    }
 
 	public boolean isThreeOfAKind() {
-		for (int i = 0; i < arrTable.length; i++) {
-			if (arrTable[i] == 3) {
-				return true;
-			}
-		}
+        for (int j : arrTable) {
+            if (j == 3) {
+                return true;
+            }
+        }
 		return false;
 	}
 
 	public boolean isPair() {
-		for (int i = 0; i < arrTable.length; i++) {
-			if (arrTable[i] == 2) {
-				return true;
-			}
-		}
+        for (int j : arrTable) {
+            if (j == 2) {
+                return true;
+            }
+        }
 		return false;
 	}
 
@@ -105,7 +101,7 @@ public class Yahtzee extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		TextFlow textFlow = new TextFlow();
 		Font font = new Font("Tahoma", 20);
 
@@ -115,12 +111,12 @@ public class Yahtzee extends Application {
 		textFlow.getChildren().addAll(text1);
 		GridPane.setConstraints(textFlow, 0, 0, 2, 1);
 
-		images = new Image[] { new Image("file:src/ne222hz_assign2/Exercise8/1.png"),
-				new Image("file:src/ne222hz_assign2/Exercise8/2.png"),
-				new Image("file:src/ne222hz_assign2/Exercise8/3.png"),
-				new Image("file:src/ne222hz_assign2/Exercise8/4.png"),
-				new Image("file:src/ne222hz_assign2/Exercise8/5.png"),
-				new Image("file:src/ne222hz_assign2/Exercise8/6.png") };
+		images = new Image[] { new Image( "1.png"),
+				new Image("2.png"),
+				new Image("3.png"),
+				new Image("4.png"),
+				new Image("5.png"),
+				new Image("6.png") };
 
 		imageViews = new ImageView[5];
 		checkBoxes = new CheckBox[5];
